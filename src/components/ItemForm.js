@@ -6,7 +6,7 @@ function ItemForm({onItemAdd}) {
  
  function handleSubmit(e){
   e.preventDefault()
-  const newItems= {
+  const itemData= {
     name:name,
     category:category,
     isInCart:false
@@ -17,10 +17,10 @@ function ItemForm({onItemAdd}) {
       headers:{
         'Content-Type':'application/JSON',
       }, 
-      body: JSON.stringify(newItems),
+      body: JSON.stringify(itemData),
     })
     .then((res)=>res.json())
-    .then((items)=> onItemAdd(items))
+    .then((newItem)=> onItemAdd(newItem))
    
  }
 

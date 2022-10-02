@@ -6,7 +6,7 @@ import Item from "./Item";
 
 function ShoppingList() {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [items, setItems] = useState([{}]);
+  const [items, setItems] = useState([]);
 
   useEffect (()=>{
    fetch('http://localhost:4000/items')
@@ -16,8 +16,8 @@ function ShoppingList() {
    })
   }, [])
   
-  function handleAddItem(items){
-   setItems([{...items, items}])
+  function handleAddItem(newItem){
+   setItems([...items, newItem])
   }
 
   function handleCategoryChange(category) {
@@ -36,7 +36,7 @@ function ShoppingList() {
   }
   
   function handleDelete(deletedItem){
-    const updatedItems = items.filter((item)=>item.id !== deletedItem)
+    const updatedItems = items.filter((item)=> item.id !== deletedItem.id)
     setItems(updatedItems)
   }
 
